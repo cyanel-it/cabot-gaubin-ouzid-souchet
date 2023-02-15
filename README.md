@@ -10,3 +10,18 @@ L'application initiale est composée de 3 services :
 - un service web (Go)
 - un service de base de données (MariaDB)
 - un service de proxy (Nginx)
+
+### Proxy
+Le proxy est accessible depuis l'extérieur et est configuré pour rediriger les requêtes vers le service web.
+
+On le démarre avec la commande suivante :
+```bash
+kubectl apply -f manifests/proxy.yaml
+```
+
+Puis, on le rend accessible avec :
+```bash
+kubectl port-forward service/proxy 8080:80
+```
+
+On peut maintenant y accéder depuis [http://localhost:8080](http://localhost:8080).
