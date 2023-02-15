@@ -25,3 +25,10 @@ kubectl port-forward service/proxy 8080:80
 ```
 
 On peut maintenant y accéder depuis [http://localhost:8080](http://localhost:8080).
+
+
+## Nettoyage
+Pour supprimer les ressources créées, on utilise la commande suivante :
+```bash
+kubectl delete -f manifests/
+```
