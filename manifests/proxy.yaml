@@ -1,0 +1,61 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: proxy
+  labels:
+    app: proxy
+spec:
+  selector:
+    app: proxy
+  ports:
+    - port: 80
+
+---
+
+# ConfigMap for nginx configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxy-config
+data:
+  default.conf: |
+    server {
+      listen 80;      
+      location / {
+        proxy_pass http://backend:8000;
+      }
+    }  
+
+---
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxy
+  labels:
+    app: proxy
+spec:
+  selector:
+    matchLabels:
+      app: proxy
+  template:
+    metadata:
+      labels:
+        app: proxy
+    spec:
+      containers:
+        - name: proxy
+          image: "nginx:1.23.3"
+          ports:
+            - containerPort: 80
+          # Mount the config
+          volumeMounts:
+            - name: proxy-config
+              mountPath: /etc/nginx/conf.d
+      # Add the configMap as a volume
+      volumes:
+        - name: proxy-config
+          configMap:
+            name: proxy-config
