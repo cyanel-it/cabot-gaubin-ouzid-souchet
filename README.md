@@ -8,8 +8,61 @@ Convertir [un docker-compose](https://github.com/docker/awesome-compose/tree/mas
 
 L'application initiale est composée de 3 services :
 - un service web (Go)
-- un service de base de données (MariaDB)
+- un service de base de données (MySQL)
 - un service de proxy (Nginx)
+
+### BDD
+
+#### Création
+Création du volume dans minikube :
+```bash
+minikube ssh
+```
+Puis dans le terminal de minikube :
+```bash
+sudo mkdir /mnt/data
+```
+
+Création du volume et déploiement de la base de données :
+```bash
+kubectl apply -f manifests/mysql/mysql-volume.yaml
+kubectl apply -f manifests/mysql/mysql.yaml
+```
+#### Nettoyage
+```bash
+kubectl delete -f manifests/mysql/mysql.yaml
+kubectl delete -f manifests/mysql/mysql-volume.yaml
+```
+Dans minikube :
+```bash
+minikube ssh
+```
+Puis :
+```bash
+sudo rm -rf /mnt/data
+```
+
+### Proxy
+Le proxy est accessible depuis l'extérieur et est configuré pour rediriger les requêtes vers le service web.
+
+On le démarre avec la commande suivante :
+```bash
+kubectl apply -f manifests/proxy.yaml
+```
+
+Puis, on le rend accessible avec :
+```bash
+kubectl port-forward service/proxy 8080:80
+```
+
+On peut maintenant y accéder depuis [http://localhost:8080](http://localhost:8080).
+
+
+## Nettoyage
+Pour supprimer les ressources créées, on utilise la commande suivante :
+```bash
+kubectl delete -f manifests/
+```
 
 ### Proxy
 Le proxy est accessible depuis l'extérieur et est configuré pour rediriger les requêtes vers le service web.
