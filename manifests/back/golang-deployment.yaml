@@ -15,5 +15,8 @@ spec:
         app: golang
     spec:
       containers:
-      - image: golang-project:latest
+      - image: docker.io/library/golang-project:latest
         name: golang
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 81
