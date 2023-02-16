@@ -15,7 +15,7 @@ import (
 )
 
 func connect() (*sql.DB, error) {
-	return sql.Open("mysql", fmt.Sprintf("root:%s@tcp(mysql:3306)/example", string(os.Getenv("MYSQL_ROOT_PASSWORD"))))
+	return sql.Open("mysql", fmt.Sprintf("root:Imsosecret@tcp(mysql:3306)/example"))
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
