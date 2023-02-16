@@ -1,2 +1,5 @@
 #!/bin/bash
-for file in *.yml; do kubectl apply -f "$file"; done
+
+# The order of the files is important !
+kubectl apply -f mysql-volume.yaml
+kubectl apply -f mysql.yaml
