@@ -7,5 +7,6 @@ kubectl delete -f manifests/back/golang-service.yaml
 
 kubectl delete -f manifests/mysql/mysql.yaml
 kubectl delete -f manifests/mysql/mysql-volume.yaml
+kubectl delete secret mysql-pass
 
 kubectl delete -f manifests/proxy.yaml

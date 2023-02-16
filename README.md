@@ -85,3 +85,10 @@ Pour supprimer les ressources créées, on utilise la commande suivante :
 ```bash
 kubectl delete -f manifests/
 ```
+
+### Generation secret
+
+Pour générer un secret il faut utiliser la commande suivante :
+```bash
+kubectl create secret generic mysql-pass --from-literal=password='mypassword'
+```
