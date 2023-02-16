@@ -11,6 +11,22 @@ L'application initiale est composée de 3 services :
 - un service de base de données (MariaDB)
 - un service de proxy (Nginx)
 
+## Script
+
+### Build et apply
+
+Pour build et apply utiliser le script bash build.sh
+```
+sh build.sh
+```
+
+### Clean 
+
+Pour clean les services, déploiements et pods utiliser le script bash clean.sh
+```
+sh clean.sh
+```
+
 ### Proxy
 Le proxy est accessible depuis l'extérieur et est configuré pour rediriger les requêtes vers le service web.
 
