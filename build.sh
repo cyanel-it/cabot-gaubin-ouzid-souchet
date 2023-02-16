@@ -7,7 +7,9 @@ exit
 EOF
 
 echo "Defining secret password"
-kubectl create secret generic mysql-pass --from-literal=password=Imsosecret
+kubectl create secret generic mysql-pass \
+--from-literal=password=Imsosecret \
+--from-literal=database=database
 
 echo "Creating apps"
 kubectl apply -f ./manifests/mysql/mysql-volume.yaml

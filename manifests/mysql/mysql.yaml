@@ -41,7 +41,10 @@ spec:
               name: mysql-pass
               key: password
         - name: MYSQL_DATABASE
-          value: example
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: database
         ports:
           - containerPort: 3306
             name: mysql
