@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -16,11 +15,7 @@ import (
 )
 
 func connect() (*sql.DB, error) {
-	bin, err := ioutil.ReadFile("/run/secrets/db-password")
-	if err != nil {
-		return nil, err
-	}
-	return sql.Open("mysql", fmt.Sprintf("root:Imsosecret@tcp(db:3306)/example"))
+	return sql.Open("mysql", fmt.Sprintf("root:Imsosecret@tcp(mysql:3306)/example"))
 }
 
 func blogHandler(w http.ResponseWriter, r *http.Request) {
