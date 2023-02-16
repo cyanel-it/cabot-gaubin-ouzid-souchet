@@ -2,11 +2,10 @@
 
 echo "Let's clean up our environment"
 
-kubectl delete deployment golang
-kubectl delete svc golang
+kubectl delete -f manifests/back/golang-deployment.yaml
+kubectl delete -f manifests/back/golang-service.yaml
 
-kubectl delete deployment mysql
-kubectl delete svc mysql
+kubectl delete -f manifests/mysql/mysql.yaml
+kubectl delete -f manifests/mysql/mysql-volume.yaml
 
-kubectl delete deployment proxy
-kubectl delete svc proxy
+kubectl delete -f manifests/proxy.yaml
