@@ -20,6 +20,13 @@ Pour build et apply utiliser le script bash build.sh
 sh build.sh
 ```
 
+### Start
+
+Pour start utiliser le script bash start.sh
+```
+sh start.sh
+```
+
 ### Clean 
 
 Pour clean les services, déploiements et pods utiliser le script bash clean.sh
@@ -55,28 +62,6 @@ minikube ssh
 Puis :
 ```bash
 sudo rm -rf /mnt/data
-```
-
-### Proxy
-Le proxy est accessible depuis l'extérieur et est configuré pour rediriger les requêtes vers le service web.
-
-On le démarre avec la commande suivante :
-```bash
-kubectl apply -f manifests/proxy.yaml
-```
-
-Puis, on le rend accessible avec :
-```bash
-kubectl port-forward service/proxy 8080:80
-```
-
-On peut maintenant y accéder depuis [http://localhost:8080](http://localhost:8080).
-
-
-## Nettoyage
-Pour supprimer les ressources créées, on utilise la commande suivante :
-```bash
-kubectl delete -f manifests/
 ```
 
 ### Proxy
